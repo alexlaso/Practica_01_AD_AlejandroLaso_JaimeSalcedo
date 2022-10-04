@@ -1,9 +1,6 @@
 package controllers
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.*
 import models.Contenedor
 import models.Residuo
 import models.loadFromCsvFile
@@ -38,5 +35,15 @@ object BasureroController {
             exitProcess(1)
         }
         logger.debug { "El proceso se ha ejecutado sin errores" }
+    }
+
+    suspend fun saveData() = coroutineScope {
+        logger.debug { "Guardando datos..." }
+        val myScope = CoroutineScope(Dispatchers.IO)
+
+        val informeJson=myScope.launch {
+            logger.debug { "Guardando JSON" }
+
+        }
     }
 }

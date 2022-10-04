@@ -18,13 +18,13 @@ data class Contenedor(
     val cantidad: Int,
     val lote: Int,
     val distrito: String,
-    //val barrio: Int,
+    val barrio: Int,
     val tipo_via: String,
     val nombre_via: String,
     val numero_via: Int,
     val coordenada_x: Double,
     val coordenada_y: Double,
-   // val tag: String
+    val tag: String
 ){
     companion object
 }
@@ -47,14 +47,17 @@ fun Contenedor.Companion.loadFromCsvFile(csvFile: File): List<Contenedor>{
                 cantidad = fields[4].toInt(),
                 lote = fields[5].toInt(),
                 distrito = fields[6],
-               // barrio = fields[7].toInt(),
+                barrio = fields[7].toInt(),
                 tipo_via = fields[8],
                 nombre_via = fields[9],
                 numero_via = fields[10].toInt(),
                 coordenada_x = fields[11].toDouble(),
                 coordenada_y = fields[12].toDouble(),
-                //tag = fields[15]
+                tag = fields[15]
             )
     }
 
+}
+enum class Tipo(){
+    ORGANICA, PAPELCARTON
 }
