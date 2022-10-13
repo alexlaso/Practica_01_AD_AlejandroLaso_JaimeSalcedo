@@ -1,6 +1,5 @@
 package controllers
 
-import kotlinx.coroutines.*
 import models.Contenedor
 import models.Residuo
 import models.TipoContenedor
@@ -39,21 +38,21 @@ object BasureroController {
 
     fun cantidadTipoDistrito(){
         println("Agrupado por distrito")
-        val organicosporDistrito = contenedores.filter { it.tipo==TipoContenedor.ORGANICA }
-        println("Orgánicos por distrito \uF0E0 ${organicosporDistrito.groupingBy {it.distrito}.eachCount()}")
-        val restoporDistrito = contenedores.filter { it.tipo==TipoContenedor.RESTO}
-        println("Resto por distrito \uF0E0 ${restoporDistrito.groupingBy {it.distrito}.eachCount()}")
-        val envasesporDistrito = contenedores.filter { it.tipo==TipoContenedor.ENVASES}
-        println("Envases por distrito \uF0E0 ${envasesporDistrito.groupingBy {it.distrito}.eachCount()}")
-        val vidrioporDistrito = contenedores.filter { it.tipo==TipoContenedor.VIDRIO}
-        println("Vidrio por distrito \uF0E0 ${vidrioporDistrito.groupingBy {it.distrito}.eachCount()}")
-        val papelcartonporDistrito = contenedores.filter { it.tipo==TipoContenedor.PAPEL_Y_CARTON}
-        println("Papel y Cartón por distrito \uF0E0 ${papelcartonporDistrito.groupingBy {it.distrito}.eachCount()}")
+        val organicos = contenedores.filter { it.tipo==TipoContenedor.ORGANICA }
+        println("Orgánicos por distrito \uF0E0 ${organicos.groupingBy {it.distrito}.eachCount()}")
+        val resto = contenedores.filter { it.tipo==TipoContenedor.RESTO}
+        println("Resto por distrito \uF0E0 ${resto.groupingBy {it.distrito}.eachCount()}")
+        val envases = contenedores.filter { it.tipo==TipoContenedor.ENVASES}
+        println("Envases por distrito \uF0E0 ${envases.groupingBy {it.distrito}.eachCount()}")
+        val vidrio = contenedores.filter { it.tipo==TipoContenedor.VIDRIO}
+        println("Vidrio por distrito \uF0E0 ${vidrio.groupingBy {it.distrito}.eachCount()}")
+        val papelcarton = contenedores.filter { it.tipo==TipoContenedor.PAPEL_Y_CARTON}
+        println("Papel y Cartón por distrito \uF0E0 ${papelcarton.groupingBy {it.distrito}.eachCount()}")
 
-        println("Media de contenedores organicos por distrito redondeado \uF0E0 ${organicosporDistrito.groupBy{ it.distrito }.map {it.value.size}.average().roundToInt()}")
-        println("Media de contenedores de restos por distrito redondeado \uF0E0 ${restoporDistrito.groupBy { it.distrito }.map {it.value.size}.average().roundToInt()}")
-        println("Media de contenedores de envases por distrito redondeado \uF0E0 ${envasesporDistrito.groupBy { it.distrito }.map {it.value.size}.average().roundToInt()}")
-        println("Media de contenedores de vidrio por distrito redondeado \uF0E0 ${vidrioporDistrito.groupBy { it.distrito }.map {it.value.size}.average().roundToInt()}")
-        println("Media de contenedores de papel y cartón por distrito redondeado \uF0E0 ${papelcartonporDistrito.groupBy { it.distrito }.map {it.value.size}.average().roundToInt()}")
+        println("Media de contenedores organicos por distrito redondeado \uF0E0 ${organicos.groupBy{ it.distrito }.map {it.value.size}.average().roundToInt()}")
+        println("Media de contenedores de restos por distrito redondeado \uF0E0 ${resto.groupBy { it.distrito }.map {it.value.size}.average().roundToInt()}")
+        println("Media de contenedores de envases por distrito redondeado \uF0E0 ${envases.groupBy { it.distrito }.map {it.value.size}.average().roundToInt()}")
+        println("Media de contenedores de vidrio por distrito redondeado \uF0E0 ${vidrio.groupBy { it.distrito }.map {it.value.size}.average().roundToInt()}")
+        println("Media de contenedores de papel y cartón por distrito redondeado \uF0E0 ${papelcarton.groupBy { it.distrito }.map {it.value.size}.average().roundToInt()}")
     }
 }
