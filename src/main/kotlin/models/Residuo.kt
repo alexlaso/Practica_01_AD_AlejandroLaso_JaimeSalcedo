@@ -5,7 +5,6 @@ import kotlinx.serialization.Serializable
 import mu.KotlinLogging
 import java.io.File
 import java.io.FileNotFoundException
-import java.util.ResourceBundle
 
 private val logger = KotlinLogging.logger {}
 
@@ -13,10 +12,10 @@ private val logger = KotlinLogging.logger {}
 @SerialName("residuo")
 
 data class Residuo(
-    val año: Int,
+    val ano: Int,
     val mes: String,
     val lote: Int,
-    val residuo: String,
+    val residuo: TipoResiduo,
     val distrito: Int,
     val nombre_distrito: String,
     val toneladas: Double
@@ -35,14 +34,37 @@ fun Residuo.Companion.loadFromCsvFile(csvFile: File): List<Residuo>{
         .map{
                 fields ->
             Residuo(
-                año = fields[0].toInt(),
+                ano = fields[0].toInt(),
                 mes = fields[1],
                 lote = fields[2].toInt(),
-                residuo = fields[3],
+                residuo = identificarResiduo(fields[3]),
                 distrito = fields[4].toInt(),
                 nombre_distrito = fields[5],
-                toneladas = fields[6].toDouble()
+                toneladas = reemplazo(fields[6])
             )
         }
 
+}
+
+fun reemplazo(toneladas: String):Double{
+    val toneladasDos : String = toneladas.replace(",",".")
+    return toneladasDos.toDouble()
+}
+
+fun identificarResiduo(c:String):TipoResiduo{
+    return when(c){
+        "RESTO" -> TipoResiduo.RESTO
+        "ENVASES" -> TipoResiduo.ENVASES
+        "VIDRIO" -> TipoResiduo.VIDRIO
+        "VIDRIO COMERCIAL" -> TipoResiduo.VIDRIO_COMERCIAL
+        "ORGANICA" -> TipoResiduo.ORGANICA
+        "PAPEL-CARTON" -> TipoResiduo.PAPEL_Y_CARTON
+        "CARTON COMERCIAL" -> TipoResiduo.CARTON_COMERCIAL
+        "RCD" -> TipoResiduo.RCD
+        "PUNTOS LIMPIOS" -> TipoResiduo.PUNTOS_LIMPIOS
+        "CONTENEDORES DE ROPA" -> TipoResiduo.CONTENEDORES_DE_ROPA_USADA
+        "PILAS" -> TipoResiduo.PILAS
+        "ANIMALES MUERTOS" -> TipoResiduo.ANIMALES_MUERTOS
+        else -> TipoResiduo.UNKNOWN
+    }
 }

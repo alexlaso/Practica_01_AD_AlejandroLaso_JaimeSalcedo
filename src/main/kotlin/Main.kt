@@ -1,11 +1,14 @@
 import controllers.BasureroController
 import kotlin.system.measureTimeMillis
 
-suspend fun main() {
+fun main() {
+    val basurero = BasureroController
     measureTimeMillis {
-        BasureroController.loadData()
+        basurero.loadData()
 
-        BasureroController.saveData()
+        basurero.processData()
+
+        basurero.saveData()
     }.also{
         println("Tiempo de ejecución: ${it}.ms")
     }
