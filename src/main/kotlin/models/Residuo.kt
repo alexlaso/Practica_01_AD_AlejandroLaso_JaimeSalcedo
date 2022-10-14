@@ -15,7 +15,7 @@ data class Residuo(
     val ano: Int,
     val mes: String,
     val lote: Int,
-    val residuo: TipoResiduo,
+    val tipo: TipoResiduo,
     val distrito: Int,
     val nombre_distrito: String,
     val toneladas: Double
@@ -37,7 +37,7 @@ fun Residuo.Companion.loadFromCsvFile(csvFile: File): List<Residuo>{
                 ano = fields[0].toInt(),
                 mes = fields[1],
                 lote = fields[2].toInt(),
-                residuo = identificarResiduo(fields[3]),
+                tipo = identificarResiduo(fields[3]),
                 distrito = fields[4].toInt(),
                 nombre_distrito = fields[5],
                 toneladas = reemplazo(fields[6])
