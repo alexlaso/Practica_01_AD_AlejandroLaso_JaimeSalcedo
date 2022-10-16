@@ -101,7 +101,7 @@ object BasureroController {
 
         println("\n \t Mínimo \n")
 
-        println("Resto \uF0E0 ${residuosResto.groupBy{it.distrito}.map{ it.value.minOf{it.toneladas}.roundToInt()}}")
+        println("Resto \uF0E0 ${residuosResto.groupBy{it.distrito}.map{;it.value.minOf{it.toneladas}.roundToInt()}}")
         println("Envases \uF0E0 ${residuosEnvases.groupBy{it.distrito}.map{ it.value.minOf{it.toneladas}.roundToInt()}}")
         println("Vidrio \uF0E0 ${residuosVidrio.groupBy{it.distrito}.map{ it.value.minOf{it.toneladas}.roundToInt()}}")
         println("Orgánica \uF0E0 ${residuosOrganica.groupBy{it.distrito}.map{ it.value.minOf{it.toneladas}.roundToInt()}}")
@@ -117,7 +117,7 @@ object BasureroController {
 
         println("\n \t Medias \n")
 
-        println("Resto \uF0E0 ${residuosResto.groupBy{it.distrito}.map{it.value.sumOf{it.toneladas}}}")
+        println("Resto \uF0E0 ${residuosResto.groupBy{it.mes;it.distrito}.map{it.key}}")
 
     }
 

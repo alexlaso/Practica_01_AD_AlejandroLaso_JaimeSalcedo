@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.7.20"
     application
     kotlin("plugin.serialization") version "1.7.20"
-
+    id("org.jetbrains.dokka") version "1.7.20"
 }
 
 group = "me.alejandro"
@@ -30,6 +30,7 @@ dependencies {
     implementation("org.jdom:jdom:2.0.2")
     // Corrutinas
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
 }
 
 tasks.test {
